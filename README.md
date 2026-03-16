@@ -2,9 +2,7 @@
 
 This is my personal portfolio website showcasing my work in data analytics, AI/ML, and cloud technologies.
 
-## Live Site
-
-🔗 [https://nisarg-shah.vercel.app](https://nisarg-shah.vercel.app)
+![Portfolio Preview](public/images/preview.png)
 
 ## Tech Stack
 
