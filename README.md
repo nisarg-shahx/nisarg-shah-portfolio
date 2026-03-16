@@ -10,7 +10,6 @@ This is my personal portfolio website showcasing my work in data analytics, AI/M
 - **3D Graphics**: Three.js, React Three Fiber, WebGL
 - **Animation**: GSAP (GreenSock Animation Platform)
 - **Styling**: CSS3, Custom Animations
-- **Deployment**: Vercel
 
 ## Features
 
