@@ -1,151 +1,88 @@
-import { useEffect, useRef } from "react";
 import "./styles/WhatIDo.css";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const WhatIDo = () => {
-  const containerRef = useRef<(HTMLDivElement | null)[]>([]);
-  const setRef = (el: HTMLDivElement | null, index: number) => {
-    containerRef.current[index] = el;
-  };
-  useEffect(() => {
-    if (ScrollTrigger.isTouch) {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
-        }
-      });
+  const expertise = [
+    {
+      category: "Data & Analytics",
+      skills: [
+        { name: "AWS Data Stack", level: "Expert" },
+        { name: "SQL & Data Modeling", level: "Expert" },
+        { name: "Tableau & QuickSight", level: "Advanced" },
+        { name: "ETL/ELT Pipelines", level: "Advanced" }
+      ]
+    },
+    {
+      category: "AI & Automation",
+      skills: [
+        { name: "Generative AI & LLMs", level: "Advanced" },
+        { name: "ML Architecture", level: "Advanced" },
+        { name: "Agentic Workflows", level: "Proficient" },
+        { name: "Computer Vision", level: "Proficient" }
+      ]
+    },
+    {
+      category: "Leadership & Strategy",
+      skills: [
+        { name: "Team Leadership", level: "Expert" },
+        { name: "Cross-functional Collaboration", level: "Expert" },
+        { name: "Technical Strategy", level: "Advanced" },
+        { name: "Mentorship & Development", level: "Advanced" }
+      ]
+    },
+    {
+      category: "Cloud & Infrastructure",
+      skills: [
+        { name: "AWS Architecture", level: "Expert" },
+        { name: "Scalable Systems Design", level: "Advanced" },
+        { name: "Cost Optimization", level: "Advanced" },
+        { name: "DevOps & Automation", level: "Proficient" }
+      ]
     }
-    return () => {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.removeEventListener("click", () => handleClick(container));
-        }
-      });
-    };
-  }, []);
+  ];
+
+  const getLevelColor = (level: string) => {
+    switch(level) {
+      case "Expert": return "level-expert";
+      case "Advanced": return "level-advanced";
+      case "Proficient": return "level-proficient";
+      default: return "";
+    }
+  };
+
   return (
     <div className="whatIDO">
-      <div className="what-box">
-        <h2 className="title">
-          W<span className="hat-h2">HAT</span>
-          <div>
-            I<span className="do-h2"> DO</span>
-          </div>
-        </h2>
-      </div>
-      <div className="what-box">
-        <div className="what-box-in">
-          <div className="what-border2">
-            <svg width="100%">
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="100%"
-                stroke="white"
-                strokeWidth="2"
-                strokeDasharray="7,7"
-              />
-              <line
-                x1="100%"
-                y1="0"
-                x2="100%"
-                y2="100%"
-                stroke="white"
-                strokeWidth="2"
-                strokeDasharray="7,7"
-              />
-            </svg>
-          </div>
-          <div
-            className="what-content what-noTouch"
-            ref={(el) => setRef(el, 0)}
-          >
-            <div className="what-border1">
-              <svg height="100%">
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="100%"
-                  y2="0"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-                <line
-                  x1="0"
-                  y1="100%"
-                  x2="100%"
-                  y2="100%"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-              </svg>
+      <div className="whatIDO-container">
+        <div className="what-header">
+          <h2>
+            <div>WHAT</div>
+            <div>
+              I <span className="do-h2">DO</span>
             </div>
-            <div className="what-corner"></div>
-
-            <div className="what-content-in">
-              <h3>FRONTEND</h3>
-              <h4>Building Interactive UIs</h4>
-              <p>
-                Crafting performant, responsive interfaces with modern frameworks.
-                From SPAs to micro-frontends, I deliver pixel-perfect experiences.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">React.js</div>
-                <div className="what-tags">Angular</div>
-                <div className="what-tags">Next.js</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">Material UI</div>
-                <div className="what-tags">HTML5</div>
-                <div className="what-tags">CSS3</div>
+          </h2>
+          <p className="what-tagline">Expertise & Proficiency Levels</p>
+        </div>
+        
+        <div className="expertise-matrix">
+          {expertise.map((category, idx) => (
+            <div key={idx} className="expertise-category">
+              <h3 className="category-title">{category.category}</h3>
+              <div className="skills-list">
+                {category.skills.map((skill, skillIdx) => (
+                  <div key={skillIdx} className="skill-item">
+                    <div className="skill-info">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className={`skill-level ${getLevelColor(skill.level)}`}>
+                        {skill.level}
+                      </span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className={`skill-fill ${getLevelColor(skill.level)}`}></div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="what-arrow"></div>
             </div>
-          </div>
-          <div
-            className="what-content what-noTouch"
-            ref={(el) => setRef(el, 1)}
-          >
-            <div className="what-border1">
-              <svg height="100%">
-                <line
-                  x1="0"
-                  y1="100%"
-                  x2="100%"
-                  y2="100%"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-              </svg>
-            </div>
-            <div className="what-corner"></div>
-            <div className="what-content-in">
-              <h3>BACKEND</h3>
-              <h4>Scalable Server Architecture</h4>
-              <p>
-                Designing robust APIs and microservices. From CMS platforms to
-                complex business logic, I build backends that scale.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">NestJS</div>
-                <div className="what-tags">Express.js</div>
-                <div className="what-tags">MongoDB</div>
-                <div className="what-tags">PostgreSQL</div>
-                <div className="what-tags">REST APIs</div>
-                <div className="what-tags">Microservices</div>
-                <div className="what-tags">Python</div>
-              </div>
-              <div className="what-arrow"></div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -153,18 +90,3 @@ const WhatIDo = () => {
 };
 
 export default WhatIDo;
-
-function handleClick(container: HTMLDivElement) {
-  container.classList.toggle("what-content-active");
-  container.classList.remove("what-sibling");
-  if (container.parentElement) {
-    const siblings = Array.from(container.parentElement.children);
-
-    siblings.forEach((sibling) => {
-      if (sibling !== container) {
-        sibling.classList.remove("what-content-active");
-        sibling.classList.toggle("what-sibling");
-      }
-    });
-  }
-}

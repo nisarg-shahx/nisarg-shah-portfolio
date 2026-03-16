@@ -43,6 +43,13 @@ const setCharacter = (
                     newMat.color = new THREE.Color("#000000");
                     mesh.material = newMat;
                   }
+                  
+                  // Remove shine from eyes by increasing roughness and reducing metalness
+                  if (mesh.name.toLowerCase().includes("eye")) {
+                    const eyeMat = mesh.material as THREE.MeshStandardMaterial;
+                    eyeMat.roughness = 1.0;
+                    eyeMat.metalness = 0.0;
+                  }
                 }
 
                 child.castShadow = true;
