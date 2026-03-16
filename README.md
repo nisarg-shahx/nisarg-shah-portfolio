@@ -2,7 +2,7 @@
 
 This is my personal portfolio website showcasing my work in data analytics, AI/ML, and cloud technologies.
 
-![Portfolio Preview](public/images/preview.png)
+![Portfolio Preview](public/images/homepage.png)
 
 ## Tech Stack
 
